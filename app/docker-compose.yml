@@ -1,18 +1,21 @@
 version: "3"
 services:
   poll:
+    build: ./poll
     image: 
     ports:
       - 5000:80
     depends_on:
       - redis
   result:
+    build: ./result
     image: 
     ports:
       - 5001:80
     depends_on:
       - postgres
   worker:
+    build: ./worker
     image: 
     depends_on:
       - redis
