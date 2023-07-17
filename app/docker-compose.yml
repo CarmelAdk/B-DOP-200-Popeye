@@ -13,14 +13,15 @@ services:
     ports:
       - 5001:80
     depends_on:
-      - postgres
+      - db
   worker:
     build: ./worker
     image: 
     depends_on:
       - redis
-      - postgres
+      - db
   redis:
     image: 
   db:
+    image:
 networks:
