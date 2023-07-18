@@ -11,5 +11,5 @@ RUN ls -l
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=builder target/worker-jar-with-dependencies.jar worker.jar
+COPY --from=builder /target/worker-jar-with-dependencies.jar worker.jar
 ENTRYPOINT ["java", "-jar", "worker.jar"]
