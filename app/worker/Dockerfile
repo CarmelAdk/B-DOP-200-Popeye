@@ -8,5 +8,5 @@ RUN mvn package
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=builder /app/target/worker-jar-with-dependencies.jar worker.jar
+COPY --from=builder /build/target/worker-jar-with-dependencies.jar worker.jar
 ENTRYPOINT ["java", "-jar", "worker.jar"]
