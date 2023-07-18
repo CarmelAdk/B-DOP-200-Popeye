@@ -2,6 +2,7 @@ FROM maven:3.8.4-jdk-11-slim as builder
 WORKDIR /build
 COPY pom.xml ./
 RUN mvn dependency:resolve
+RUN echo "tsk tsk tsk"
 RUN ls -l 
 RUN pwd
 COPY src ./src
