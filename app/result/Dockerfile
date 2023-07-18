@@ -1,5 +1,5 @@
 # Build site with node image
-FROM node:12-alpine
+FROM node:12-alpine as node-builder
 WORKDIR /app
 COPY package*.json ./
 RUN ls -l
