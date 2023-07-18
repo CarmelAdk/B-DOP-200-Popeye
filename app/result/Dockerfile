@@ -7,4 +7,4 @@ RUN ls -l
 RUN npm install --production
 COPY . .
 RUN ls -l
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
