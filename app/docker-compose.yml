@@ -10,25 +10,6 @@ services:
     depends_on:
       - redis
 
-  result:
-    build: ./result
-    restart: always
-    networks:
-      - result-tier
-    ports:
-      - 5001:4242
-    depends_on:
-      - db
-
-  worker:
-    build: ./worker
-    restart: always
-    networks:
-      - back-tier
-    depends_on:
-      - redis
-      - db
-
   redis:
     image: redis:alpine
     ports:
@@ -38,21 +19,5 @@ services:
       - poll-tier
       - back-tier
 
-  db:
-    image: postgres:9.4
-    ports:
-      - 5432:5432
-    volumes:
-      - /var/db-data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=schema.sql
-    restart: always
-    networks:
-      - result-tier
-      - back-tier
-
 networks:
-  poll-tier:
-  result-tier:
   back-tier:
