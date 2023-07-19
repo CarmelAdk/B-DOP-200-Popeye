@@ -56,6 +56,3 @@ networks:
   poll-tier:
   result-tier:
   back-tier:
-
-volumes:
-  db-data:
