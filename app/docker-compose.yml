@@ -17,7 +17,6 @@ services:
     restart: always
     networks:
       - poll-tier
-      - back-tier
 
 networks:
-  back-tier:
+  poll-tier:
