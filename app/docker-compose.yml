@@ -10,6 +10,25 @@ services:
     depends_on:
       - redis
 
+  result:
+    build: ./result
+    restart: always
+    networks:
+      - result-tier
+    ports:
+      - 5001:4242
+    depends_on:
+      - db
+
+  worker:
+    build: ./worker
+    restart: always
+    networks:
+      - back-tier
+    depends_on:
+      - redis
+      - db
+
   redis:
     image: redis:alpine
     ports:
@@ -17,6 +36,23 @@ services:
     restart: always
     networks:
       - poll-tier
+      - back-tier
+
+  db:
+    image: postgres:9.4
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/db-data:/var/lib/postgresql/data
+      - ./:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_PASSWORD=password
+    restart: always
+    networks:
+      - result-tier
+      - back-tier
 
 networks:
   poll-tier:
+  result-tier:
+  back-tier:
